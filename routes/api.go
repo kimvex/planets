@@ -72,6 +72,11 @@ func WheatherDay(c *fiber.Ctx) error {
 	}
 
 	token := QueryString.Token
+
+	if len(token) < 1 {
+		return c.JSON(models.ErrorResponse{Message: "Without token"})
+	}
+
 	weather, errorGetDay := controllers.GetWeatherDay(day, token)
 
 	if errorGetDay != nil {

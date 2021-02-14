@@ -24,5 +24,5 @@ func main() {
 
 	routes.API(apiRoute)
 
-	app.Listen(":2002")
+	app.Listen(":4004")
 }
