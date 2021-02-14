@@ -35,12 +35,12 @@ type CoordinatesPlanet struct {
 	Y float64
 }
 
-//PlanetGrades struc
+//PlanetGrades struc for grades of planet
 type PlanetGrades struct {
 	Grades int
 }
 
-//ConditionForDay struct
+//ConditionForDay struct for condition of day
 type ConditionForDay struct {
 	Condition string
 	Day       int
