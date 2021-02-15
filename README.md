@@ -29,6 +29,7 @@ Para poder comprobar la solución se levanto un servidor en DigitalOcean.
 ##### Metodo GET
 La url de la API es https://planets.kimvex.com en ella se exponen dos endpoints
 1) `/api/start_simulation/:years` Este nos permite generar una predicción de clima en los años que se pasan por parametro basado en la orbita de 360 grados de los planetas implicados.
+
 1.1) `/api/start_simulation/:years?realLife=true` Este nos permite generar una predicción de clima en los años que se pasan por parametro basado en los años terrestres de 365 días.
 
 Respuesta del endpoint:
@@ -58,10 +59,15 @@ Respuesta del endpoint:
 La infraestructura utilizada para este proyecto es a siguiente
 
 ● Lenguaje de Programación Go(Golang)
+
 ● Base de datos MySQL
+
 ● Cloud DigitalOcean
+
 ● Servidor NGINX
+
 ● Manejador DNS Cloudflare
+
 
 #### Estructura de la base de datos
 Nombre de la base de datos: `weather`
