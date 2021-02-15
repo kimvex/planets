@@ -36,7 +36,7 @@ func CenterSunTriangle(FirsPlanet, SecondPlanet, ThirdPlanet, Sun models.Coordin
 	SecondX, SecondY := ThirdPlanet.X-FirsPlanet.X, ThirdPlanet.Y-FirsPlanet.Y
 
 	side1 := (SecondX*(FirsPlanet.Y-Sun.Y) + SecondY*(Sun.X-FirsPlanet.X)) / (FirstX*SecondY - FirstY*SecondX)
-	side2 := (Sun.X - FirsPlanet.Y - side1*FirstY) / SecondY
+	side2 := (Sun.Y - FirsPlanet.Y - side1*FirstY) / SecondY
 
 	return (side1 >= 0.0) && (side2 >= 0.0) && ((side1 + side2) <= 1.0)
 }
