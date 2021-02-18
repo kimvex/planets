@@ -22,8 +22,8 @@ func Slope(From, To models.CoordinatesPlanet) float64 {
 	return math.Round(SlopeCalculate*ToFloat) / ToFloat
 }
 
-//DistanceBeetweenPlanets function for get distance between two planets
-func DistanceBeetweenPlanets(From, To models.CoordinatesPlanet) float64 {
+//DistanceBetweenPlanets function for get distance between two planets
+func DistanceBetweenPlanets(From, To models.CoordinatesPlanet) float64 {
 	RaisedBaseX := math.Pow(To.X-From.X, 2)
 	RaisedBaseY := math.Pow(To.Y-From.Y, 2)
 
@@ -39,4 +39,28 @@ func CenterSunTriangle(FirsPlanet, SecondPlanet, ThirdPlanet, Sun models.Coordin
 	side2 := (Sun.Y - FirsPlanet.Y - side1*FirstY) / SecondY
 
 	return (side1 >= 0.0) && (side2 >= 0.0) && ((side1 + side2) <= 1.0)
+}
+
+//ValidateGrade function for validate grades
+func ValidateGrade(Grades int) bool {
+	if Grades < 0 {
+		// fmt.Println(Grades, "Grados dentro", math.Abs(float64(Grades)))
+		Grades = int(math.Abs(float64(Grades)))
+	}
+
+	switch Grades % 360 {
+	case 0:
+		return true
+	case 90:
+		return true
+	case 180:
+		return true
+	case 270:
+		return true
+	case 360:
+		return true
+	default:
+		return false
+	}
+
 }

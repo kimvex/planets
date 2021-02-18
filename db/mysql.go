@@ -123,20 +123,27 @@ func (db *DB) SaveWheatherDay(WhearerDays []models.ConditionForDay, PeakDays []i
 		}
 
 		values = append(values, WhearerDays[i].Day, WhearerDays[i].Condition, db.Token)
-	}
 
-	prepare = prepare + strings.Join(ColumsValues, ",")
+		if (i % 360) == 0 {
+			prepare = prepare + strings.Join(ColumsValues, ",")
 
-	prepareBulk, errorPrepare := db.DBConnection.Prepare(prepare)
+			prepareBulk, errorPrepare := db.DBConnection.Prepare(prepare)
 
-	if errorPrepare != nil {
-		fmt.Println("Error to preparate bulk", errorPrepare)
-	}
+			if errorPrepare != nil {
+				fmt.Println("Error to preparate bulk", errorPrepare)
+			}
 
-	_, errorBulk := prepareBulk.Exec(values...)
+			_, errorBulk := prepareBulk.Exec(values...)
 
-	if errorBulk != nil {
-		fmt.Println("Error to save bulk", errorBulk)
+			if errorBulk != nil {
+				fmt.Println("Error to save bulk", errorBulk)
+			} else {
+				prepare = "INSERT INTO weather_day(`day`, `weather`, `token`) VALUES "
+				modelValues = "(?,?,?)"
+				ColumsValues = []string{}
+				values = []interface{}{}
+			}
+		}
 	}
 }
 

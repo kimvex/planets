@@ -116,21 +116,21 @@ func (P *PlanetsStructure) SetCondition() {
 	VulcanoSlope := utils.Slope(P.Betasoide.Coordinates, P.Vulcano.Coordinates)
 	SunSlope := utils.Slope(P.Betasoide.Coordinates, Sun)
 
-	if FerengiSlope == VulcanoSlope {
-		if FerengiSlope == SunSlope {
-			P.Drought += 1
-			ConditionDay.Condition = "Drought"
+	if utils.ValidateGrade(P.Ferengi.Grades) && utils.ValidateGrade(P.Betasoide.Grades) && utils.ValidateGrade(P.Vulcano.Grades) {
+		P.Drought += 1
+		ConditionDay.Condition = "Drought"
 
-			P.WeatherCondition = append(P.WeatherCondition, ConditionDay)
-		} else {
-			P.Optimum += 1
-			ConditionDay.Condition = "Optimum"
-			P.WeatherCondition = append(P.WeatherCondition, ConditionDay)
-		}
+		P.WeatherCondition = append(P.WeatherCondition, ConditionDay)
+	}
+
+	if FerengiSlope == VulcanoSlope && FerengiSlope != SunSlope {
+		P.Optimum += 1
+		ConditionDay.Condition = "Optimum"
+		P.WeatherCondition = append(P.WeatherCondition, ConditionDay)
 	} else {
-		FerengiBetasoide := utils.DistanceBeetweenPlanets(P.Betasoide.Coordinates, P.Ferengi.Coordinates)
-		FerengiVulcano := utils.DistanceBeetweenPlanets(P.Vulcano.Coordinates, P.Ferengi.Coordinates)
-		BetasoideVulcano := utils.DistanceBeetweenPlanets(P.Betasoide.Coordinates, P.Vulcano.Coordinates)
+		FerengiBetasoide := utils.DistanceBetweenPlanets(P.Betasoide.Coordinates, P.Ferengi.Coordinates)
+		FerengiVulcano := utils.DistanceBetweenPlanets(P.Vulcano.Coordinates, P.Ferengi.Coordinates)
+		BetasoideVulcano := utils.DistanceBetweenPlanets(P.Betasoide.Coordinates, P.Vulcano.Coordinates)
 
 		Perimeter := FerengiBetasoide + FerengiVulcano + BetasoideVulcano
 		ConditionDay.Perimeter = Perimeter

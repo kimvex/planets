@@ -35,12 +35,6 @@ func StartSimulation(c *fiber.Ctx) error {
 		fmt.Println("Problem with convert string to bloean")
 	}
 
-	intYears, _ := strconv.Atoi(years)
-
-	if intYears > 60 {
-		return c.JSON(models.ErrorResponse{Message: "The limit of years to simulate is 60"})
-	}
-
 	var response models.SuccessResponseCreate
 
 	Planets := controllers.GeneratePlanets()
